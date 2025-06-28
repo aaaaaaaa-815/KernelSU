@@ -21,6 +21,7 @@
 #include <linux/uidgid.h>
 #include <linux/version.h>
 #include <linux/mount.h>
+#include <linux/lsm_hooks.h>
 
 #include <linux/fs.h>
 #include <linux/namei.h>
@@ -52,6 +53,10 @@ extern int handle_sepolicy(unsigned long arg3, void __user *arg4);
 static bool ksu_su_compat_enabled = true;
 extern void ksu_sucompat_init();
 extern void ksu_sucompat_exit();
+
+static struct lsm_id ksu_lsmid = {
+    .name = "ksu",
+};
 
 static inline bool is_allow_su()
 {
@@ -712,7 +717,7 @@ static struct security_hook_list ksu_hooks[] = {
 
 void __init ksu_lsm_hook_init(void)
 {
-	security_add_hooks(ksu_hooks, ARRAY_SIZE(ksu_hooks), "ksu");
+	security_add_hooks(ksu_hooks, ARRAY_SIZE(ksu_hooks), &ksu_lsmid);
 }
 
 #else
