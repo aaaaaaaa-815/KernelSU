@@ -729,7 +729,11 @@ static struct security_hook_list ksu_hooks[] = {
 
 void __init ksu_lsm_hook_init(void)
 {
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5 , 16 , 0)
 	security_add_hooks(ksu_hooks, ARRAY_SIZE(ksu_hooks), &ksu_lsmid);
+#else
+	security_add_hooks(ksu_hooks, ARRAY_SIZE(ksu_hooks), "ksu");
+#endif
 }
 
 #else
