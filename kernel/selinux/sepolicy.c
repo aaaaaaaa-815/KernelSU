@@ -546,11 +546,12 @@ static bool add_filename_trans(struct policydb *db, const char *s,
 	}
 
 	if (trans == NULL) {
-		trans = (struct filename_trans_datum *)kcalloc(sizeof(*trans),
-							       1, GFP_ATOMIC);
-		struct filename_trans_key *new_key =
-			(struct filename_trans_key *)kmalloc(sizeof(*new_key),
-							     GFP_ATOMIC);
+		#if LINUX_VERSION_CODE >= KERNEL_VERSION(6 , 12 ,0)
+		trans = (struct filename_trans_datum *)kcalloc(1 ,sizeof(*trans), GFP_ATOMIC);
+		#else 
+		trans = (struct filename_trans_datum *)kcalloc(sizeof(*trans), 1, GFP_ATOMIC);
+		#endif
+		struct filename_trans_key *new_key = (struct filename_trans_key *)kmalloc(sizeof(*new_key), GFP_ATOMIC);
 		*new_key = key;
 		new_key->name = kstrdup(key.name, GFP_ATOMIC);
 		trans->next = last;
