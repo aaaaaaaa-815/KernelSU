@@ -21,7 +21,7 @@
 #include <linux/uidgid.h>
 #include <linux/version.h>
 #include <linux/mount.h>
-#include <linux/lsm_hooks.h>
+#include <linux/refcount.h>
 
 #include <linux/fs.h>
 #include <linux/namei.h>
@@ -54,9 +54,11 @@ static bool ksu_su_compat_enabled = true;
 extern void ksu_sucompat_init();
 extern void ksu_sucompat_exit();
 
+#if LINUX_VERSION_CODE >= KERNEL_VERSION (6 ,12 ,0)
 static struct lsm_id ksu_lsmid = {
     .name = "ksu",
 };
+#endif
 
 static inline bool is_allow_su()
 {
@@ -74,14 +76,9 @@ static inline bool is_unsupported_uid(uid_t uid)
 	return appid > LAST_APPLICATION_UID;
 }
 
-static struct group_info root_groups = { 
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 12, 0)
-	.refs = ATOMIC_INIT(2)
-#else 
-	.usage = ATOMIC_INIT(2)
-#endif
+static struct group_info root_groups = {
+	.usage = { .refs = ATOMIC_INIT(2), },
 };
-
 static void setup_groups(struct root_profile *profile, struct cred *cred)
 {
 	if (profile->groups_count > KSU_MAX_GROUPS) {
@@ -735,7 +732,7 @@ static struct security_hook_list ksu_hooks[] = {
 
 void __init ksu_lsm_hook_init(void)
 {
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(5 , 16 , 0)
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(6 , 12 , 0)
 	security_add_hooks(ksu_hooks, ARRAY_SIZE(ksu_hooks), &ksu_lsmid);
 #else
 	security_add_hooks(ksu_hooks, ARRAY_SIZE(ksu_hooks), "ksu");

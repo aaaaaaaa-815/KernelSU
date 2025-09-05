@@ -1,0 +1,26 @@
+!<thin>
+//                                              170       `
+ksu.o/
+allowlist.o/
+apk_sign.o/
+sucompat.o/
+throne_tracker.o/
+core_hook.o/
+ksud.o/
+embed_ksud.o/
+kernel_compat.o/
+selinux/selinux.o/
+selinux/sepolicy.o/
+selinux/rules.o/
+/0              0           0     0     644     20488     `
+/7              0           0     0     644     337320    `
+/20             0           0     0     644     283336    `
+/32             0           0     0     644     353512    `
+/44             0           0     0     644     319368    `
+/62             0           0     0     644     380896    `
+/75             0           0     0     644     345120    `
+/83             0           0     0     644     3368      `
+/97             0           0     0     644     272888    `
+/114            0           0     0     644     299160    `
+/133            0           0     0     644     339688    `
+/153            0           0     0     644     367000    `

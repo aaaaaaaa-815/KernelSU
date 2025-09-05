@@ -1,0 +1,1 @@
+savedcmd_drivers/kernelsu/built-in.a := rm -f drivers/kernelsu/built-in.a;  printf "drivers/kernelsu/%s " ksu.o allowlist.o apk_sign.o sucompat.o throne_tracker.o core_hook.o ksud.o embed_ksud.o kernel_compat.o selinux/selinux.o selinux/sepolicy.o selinux/rules.o | xargs aarch64-linux-gnu-ar cDPrST drivers/kernelsu/built-in.a
