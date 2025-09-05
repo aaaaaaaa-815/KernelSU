@@ -75,10 +75,12 @@ static inline bool is_unsupported_uid(uid_t uid)
 	uid_t appid = uid % 100000;
 	return appid > LAST_APPLICATION_UID;
 }
+#if LINUX_VERSION_CODE >= KERNEL_VERSION (6, 7, 0)
+static struct group_info root_groups = { .usage = REFCOUNT_INIT(2), };
+#else 
+static struct group_info root_groups = { .usage = ATOMIC_INIT(2) };
+#endif
 
-static struct group_info root_groups = {
-	.usage = { .refs = ATOMIC_INIT(2), },
-};
 static void setup_groups(struct root_profile *profile, struct cred *cred)
 {
 	if (profile->groups_count > KSU_MAX_GROUPS) {
