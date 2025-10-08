@@ -42,7 +42,6 @@
 #include "manager.h"
 #include "selinux/selinux.h"
 #include "throne_tracker.h"
-#include "throne_tracker.h"
 #include "kernel_compat.h"
 
 #if LINUX_VERSION_CODE >= KERNEL_VERSION (6 ,8 ,0)
