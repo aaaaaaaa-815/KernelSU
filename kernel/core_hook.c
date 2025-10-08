@@ -135,7 +135,7 @@ static void disable_seccomp()
 
 #ifdef CONFIG_SECCOMP
 	current->seccomp.mode = 0;
-	current->seccomp.filter = NULL;
+	seccomp_filter_release(current);
 	atomic_set(&current->seccomp.filter_count, 0);
 #else
 #endif
