@@ -10,7 +10,7 @@
 #include "policy/allowlist.h"
 #include "policy/app_profile.h"
 #include "policy/feature.h"
-#include "klog.h" // IWYU pragma: keep
+#include "include/klog.h" // IWYU pragma: keep
 #include "manager/manager_observer.h"
 #include "manager/throne_tracker.h"
 #include "hook/syscall_hook_manager.h"
@@ -18,7 +18,7 @@
 #include "runtime/ksud_boot.h"
 #include "feature/sulog.h"
 #include "supercall/supercall.h"
-#include "ksu.h"
+#include "include/ksu.h"
 #include "infra/file_wrapper.h"
 #include "selinux/selinux.h"
 #include "hook/syscall_hook.h"
