@@ -7,8 +7,8 @@
 #include <asm/cacheflush.h>
 #include "infra/symbol_resolver.h"
 #include "../patch_memory.h"
-#include "arch.h"
-#include "klog.h" // IWYU pragma: keep
+#include "include/arch.h"
+#include "include/klog.h" // IWYU pragma: keep
 
 sys_call_ptr_t *ksu_syscall_table = NULL;
 int ksu_dispatcher_nr = -1;
