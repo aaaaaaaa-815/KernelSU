@@ -12,10 +12,10 @@
 #include <linux/sched/task_stack.h>
 #include <linux/ptrace.h>
 
-#include "arch.h"
+#include "include/arch.h"
 #include "policy/allowlist.h"
 #include "policy/feature.h"
-#include "klog.h" // IWYU pragma: keep
+#include "include/klog.h" // IWYU pragma: keep
 #include "runtime/ksud.h"
 #include "feature/sucompat.h"
 #include "policy/app_profile.h"
