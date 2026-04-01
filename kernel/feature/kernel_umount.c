@@ -11,12 +11,12 @@
 #include <linux/types.h>
 
 #include "feature/kernel_umount.h"
-#include "klog.h" // IWYU pragma: keep
+#include "include/klog.h" // IWYU pragma: keep
 #include "policy/allowlist.h"
 #include "selinux/selinux.h"
 #include "policy/feature.h"
 #include "runtime/ksud_boot.h"
-#include "ksu.h"
+#include "include/ksu.h"
 
 static bool ksu_kernel_umount_enabled = true;
 
