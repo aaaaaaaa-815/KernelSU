@@ -2,7 +2,7 @@
 #include <linux/compiler_types.h>
 
 #include "feature/sulog.h"
-#include "klog.h" // IWYU pragma: keep
+#include "include/klog.h" // IWYU pragma: keep
 #include "policy/feature.h"
 #include "sulog/event.h"
 #include "sulog/fd.h"
